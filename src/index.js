@@ -9,8 +9,23 @@ class SmartTemperature {
     @observable unit = "C";
     @observable temperatureCelsius = 25;
 
+    @computed get temperatureFahrenheit () {
+        return this.temperatureCelsius * (9/5) + 32;
+    }
+
+    @computed get temperatureKelvin () {
+        return this.temperatureCelsius + 273.15;
+    }
+
     @computed get temperature () {
-        return this.temperatureCelsius + " C"
+        switch(this.unit) {
+            case "F":
+                return this.temperatureFahrenheit + " F";
+            case "K":
+                return this.temperatureKelvin + " K";
+            default:
+                return this.temperatureCelsius + " C";
+        }
     }
 }
 
@@ -21,8 +36,21 @@ const DumbTemperature = function () {
     extendObservable(this, {
         unit: "C",
         temperatureCelsius: 25,
+        temperatureFahrenheit: function () {
+            return this.temperatureCelsius * (9/5) + 32;
+        },
+        temperatureKelvin: function () {
+            return this.temperatureCelsius + 273.15;
+        },
         temperature: function () {
-            return this.temperatureCelsius + " C"
+            switch(this.unit) {
+                case "F":
+                    return this.temperatureFahrenheit + " F";
+                case "K":
+                    return this.temperatureKelvin + " K";
+                default:
+                    return this.temperatureCelsius + " C";
+            }
         }
     });
 }
