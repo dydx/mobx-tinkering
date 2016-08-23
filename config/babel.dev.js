@@ -13,6 +13,7 @@ module.exports = {
     require.resolve('babel-preset-react'),
   ],
   plugins: [
+    require.resolve('babel-plugin-transform-decorators-legacy'),
     // function x(a, b, c,) { }
     require.resolve('babel-plugin-syntax-trailing-function-commas'),
     // class { handleClick = () => { } }
@@ -24,8 +25,6 @@ module.exports = {
       helpers: false,
       polyfill: false,
       regenerator: true
-    }],
-    require.resolve('babel-plugin-transform-class-properties'),
-    require.resolve('babel-plugin-transform-decorators-legacy')
+    }]
   ]
 };
